@@ -1,0 +1,50 @@
+1) ot : perform following query on database (07 sep, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `users_feedback` ADD `user_name` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT
+NULL AFTER `user_id`, ADD `user_designation` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT
+NULL AFTER `user_name`, ADD `user_country` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT
+NULL AFTER `user_designation`;
+
+ALTER TABLE `users`
+  DROP `name`,
+  DROP `designation`,
+  DROP `country`;
+
+ALTER TABLE `users_feedback` CHANGE `is_reward` `feedback_type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '1=Pending,2=Done,3=Reject';
+
+ALTER TABLE `users_feedback` ADD `reward_type` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '1=Amazon,2=Custom' AFTER `feedback_type`, ADD `gift_id` VARCHAR(100) NULL DEFAULT NULL AFTER `reward_type`, ADD `gift_code` VARCHAR(100) NULL DEFAULT NULL AFTER `gift_id`, ADD `expired_at` TIMESTAMP NULL DEFAULT NULL AFTER `gift_code`;
+
+ALTER TABLE `users_feedback` CHANGE `reward_type` `reward_type` TINYINT(1) NULL DEFAULT NULL COMMENT '1=Amazon, 2=Custom';
+
+2) ot : perform following query on database (15 sep, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `apps` CHANGE `store_url` `play_store_url` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+ALTER TABLE `apps` ADD `app_store_url` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL AFTER `play_store_url`;
+
+3) ot : perform following query on database (19 sep, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `users_feedback` CHANGE `expired_at` `expired_date` DATE NULL DEFAULT NULL;
+
+4) ot : perform following query on database (12 oct, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `users_feedback` ADD `user_info` VARCHAR(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL AFTER `expired_date`;
+
+5) ot : perform following query on database (19 oct, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `users_feedback` CHANGE `user_info` `user_info` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+ALTER TABLE apps CHANGE custom_message custom_message TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+ALTER TABLE `apps` CHANGE `platform` `platform` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '1=Android, 2=IOS, 3=Web';
+
+6) ot: perform following query on database (09 des, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `apps` ADD `price` INT NULL DEFAULT NULL AFTER `slug`;
+
+ALTER TABLE `apps` ADD `youtube_url` VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL AFTER `app_store_url`;
+
+7) ot: perform following query on database (14 des, 2022)
+--------------------------------------------------------------------
+ALTER TABLE `users_feedback` CHANGE `user_info` `user_info` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
